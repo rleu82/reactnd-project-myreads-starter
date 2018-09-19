@@ -26,4 +26,4 @@
 
 1. Create routers with react-router-dom
 2. propTypes from prop-types
-3. Maybe escape-string-regexp and sort-by?
+3. Maybe escape-string-regexp and sort-by?ß
