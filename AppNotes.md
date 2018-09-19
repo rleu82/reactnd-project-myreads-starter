@@ -20,7 +20,8 @@
     - a book component
     - a options select component
     - search component
-6. ...add more notes here as I go about project if needed.
+6. Refactor app.js into the components
+7. ...add more notes here as I go about project if needed.
 
 ### Things I might need after:
 
