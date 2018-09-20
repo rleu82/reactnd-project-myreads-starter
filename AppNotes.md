@@ -28,3 +28,7 @@
 1. Create routers with react-router-dom
 2. propTypes from prop-types
 3. Maybe escape-string-regexp and sort-by?ß
+
+### Random notes
+
+1. Bookcase should be a page itself and search is a page itself
