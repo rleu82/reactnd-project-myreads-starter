@@ -4,9 +4,7 @@ class BookCase extends Component {
     render() {
         return (
             <div className="list-books-content">
-                <div>
-                    <BookCaseShelves books={this.props.books} />
-                </div>
+                <BookCaseShelves books={this.props.books} />
             </div>
         );
     }
