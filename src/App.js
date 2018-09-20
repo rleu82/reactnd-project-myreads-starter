@@ -23,12 +23,10 @@ class BooksApp extends React.Component {
         });
     }
     // function for child component to open close search page
-    closeSearch(e) {
+    closeSearch = e => {
         e.preventDefault();
-        this.setState(state => ({
-            showSearchPage: false
-        }));
-    }
+        this.setState({ showSearchPage: false });
+    };
 
     render() {
         return (
