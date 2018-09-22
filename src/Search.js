@@ -1,6 +1,33 @@
 import React, { Component } from 'react';
+import * as BooksAPI from './BooksAPI';
+import Book from './Book';
 
 class BookSearch extends Component {
+    state = {
+        query: '',
+        booksFound: []
+    };
+
+    updateQuery = query => {
+        this.setState({ query: query });
+        this.queryResults(query);
+    };
+
+    queryResults = query => {
+        if (query) {
+            BooksAPI.search(query).then(booksFound => {
+                booksFound.error ? this.setState({ booksFound: [] }) : this.setState({ booksFound });
+            });
+            console.log(this.state.booksFound);
+        } else {
+            this.setState({ booksFound: [] });
+        }
+    };
+
+    sortBooksFound = shelf => {
+        return this.state.booksFound.filter(book => book.shelf === shelf);
+    };
+
     render() {
         return (
             <div className="search-books">
@@ -17,11 +44,24 @@ class BookSearch extends Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                        <input type="text" placeholder="Search by title or author" />
+                        <input
+                            type="text"
+                            placeholder="Search by title or author"
+                            value={this.state.query}
+                            onChange={event => this.updateQuery(event.target.value)}
+                        />
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <ol className="books-grid" />
+                    <ol className="books-grid">
+                        {this.state.booksFound.map(filteredBook => {
+                            return (
+                                <li key={filteredBook.id}>
+                                    <Book book={filteredBook} />
+                                </li>
+                            );
+                        })}
+                    </ol>
                 </div>
             </div>
         );
