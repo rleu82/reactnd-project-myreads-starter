@@ -6,7 +6,7 @@ class BookCaseShelves extends Component {
     // Mozilla example: words.filter(word => word.length > 6).
     // Filter the books and for each book check if their book.shelf === shelf (ie: currentlyReading, wantToRead, read)
     sortBooks = shelf => {
-        this.props.books.filter(book => book.shelf === shelf);
+        return this.props.books.filter(book => book.shelf === shelf);
     };
     render() {
         return (
@@ -15,12 +15,13 @@ class BookCaseShelves extends Component {
                     <h2 className="bookshelf-title">Currently Reading</h2>
                     <div className="bookshelf-books">
                         <ol className="books-grid">
-                            {this.props.books.map(book => (
-                                // fixed key error by using id 'https://reactjs.org/docs/lists-and-keys.html#keys'
-                                <li key={book.id}>
-                                    <Book book={book} />
-                                </li>
-                            ))}
+                            {this.sortBooks('currentlyReading').map(book => {
+                                return (
+                                    <li key={book.id}>
+                                        <Book book={book} />
+                                    </li>
+                                );
+                            })}
                         </ol>
                     </div>
                 </div>
@@ -28,11 +29,13 @@ class BookCaseShelves extends Component {
                     <h2 className="bookshelf-title">Want to Read</h2>
                     <div className="bookshelf-books">
                         <ol className="books-grid">
-                            {this.props.books.map(book => (
-                                <li key={book.id}>
-                                    <Book book={book} />
-                                </li>
-                            ))}
+                            {this.sortBooks('wantToRead').map(book => {
+                                return (
+                                    <li key={book.id}>
+                                        <Book book={book} />
+                                    </li>
+                                );
+                            })}
                         </ol>
                     </div>
                 </div>
@@ -40,11 +43,14 @@ class BookCaseShelves extends Component {
                     <h2 className="bookshelf-title">Read</h2>
                     <div className="bookshelf-books">
                         <ol className="books-grid">
-                            {this.props.books.map(book => (
-                                <li key={book.id}>
-                                    <Book book={book} />
-                                </li>
-                            ))}
+                            {/* sort books by read then map to create new array with these books */}
+                            {this.sortBooks('read').map(book => {
+                                return (
+                                    <li key={book.id}>
+                                        <Book book={book} />
+                                    </li>
+                                );
+                            })}
                         </ol>
                     </div>
                 </div>
