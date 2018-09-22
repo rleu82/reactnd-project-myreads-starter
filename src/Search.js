@@ -54,10 +54,20 @@ class BookSearch extends Component {
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {this.state.booksFound.map(filteredBook => {
+                        {/* Map the booksFound query results and check if book already has a shelf.
+                            Map through this.state.books(your library) to see if the books is already on a shelf in your library.
+                            If true then set the shelf to the current shelf the book resides in. If not in
+                            your library, set the shelf to none
+                        */}
+                        {this.state.booksFound.map(bookFound => {
+                            let currentShelf = 'none';
+                            this.props.books.map(currentBooks => {
+                                currentBooks.id === bookFound.id ? (currentShelf = currentBooks.shelf) : '';
+                            });
+
                             return (
-                                <li key={filteredBook.id}>
-                                    <Book book={filteredBook} />
+                                <li key={bookFound.id}>
+                                    <Book book={bookFound} shelf={currentShelf} />
                                 </li>
                             );
                         })}

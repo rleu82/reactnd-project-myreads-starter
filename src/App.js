@@ -38,7 +38,7 @@ class BooksApp extends React.Component {
         return (
             <div className="app">
                 {this.state.showSearchPage ? (
-                    <BookSearch closesSearch={this.closeSearch} />
+                    <BookSearch closesSearch={this.closeSearch} books={this.state.books} />
                 ) : (
                     <BookCase books={this.state.books} openSearch={this.openSearch} />
                 )}
