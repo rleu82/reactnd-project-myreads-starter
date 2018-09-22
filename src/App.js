@@ -16,16 +16,22 @@ class BooksApp extends React.Component {
         showSearchPage: false
     };
 
+    // Get all books stored
     componentDidMount() {
         BooksAPI.getAll().then(books => {
             this.setState({ books });
             console.log(this.state.books);
         });
     }
-    // function for child component to open close search page
+
+    // functions for child component to open close search page
     closeSearch = e => {
         e.preventDefault();
         this.setState({ showSearchPage: false });
+    };
+    openSearch = e => {
+        e.preventDefault();
+        this.setState({ showSearchPage: true });
     };
 
     render() {
@@ -34,15 +40,7 @@ class BooksApp extends React.Component {
                 {this.state.showSearchPage ? (
                     <BookSearch closesSearch={this.closeSearch} />
                 ) : (
-                    <div className="list-books">
-                        <div className="list-books-title">
-                            <h1>MyReads</h1>
-                        </div>
-                        <BookCase books={this.state.books} />
-                        <div className="open-search">
-                            <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
-                        </div>
-                    </div>
+                    <BookCase books={this.state.books} openSearch={this.openSearch} />
                 )}
             </div>
         );

@@ -12,7 +12,7 @@ class Book extends Component {
                             width: 128,
                             height: 193,
                             // For my reference ternary operator: (condition) ? expression on true : expression on false
-                            // check for imageLinks on object, if true grab thumbnail, if not true ':' display nothing
+                            // check for imageLinks key on object, if true grab thumbnail, if not true ':' display nothing
                             backgroundImage: `url(${
                                 this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : ''
                             })`
