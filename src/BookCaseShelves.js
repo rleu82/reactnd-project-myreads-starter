@@ -18,7 +18,7 @@ class BookCaseShelves extends Component {
                             {this.sortBooks('currentlyReading').map(book => {
                                 return (
                                     <li key={book.id}>
-                                        <Book book={book} shelf={'currentlyReading'} />
+                                        <Book book={book} shelf={'currentlyReading'} moveBook={this.props.moveBook} />
                                     </li>
                                 );
                             })}
@@ -32,7 +32,7 @@ class BookCaseShelves extends Component {
                             {this.sortBooks('wantToRead').map(book => {
                                 return (
                                     <li key={book.id}>
-                                        <Book book={book} shelf={'wantToRead'} />
+                                        <Book book={book} shelf={'wantToRead'} moveBook={this.props.moveBook} />
                                     </li>
                                 );
                             })}
@@ -47,7 +47,7 @@ class BookCaseShelves extends Component {
                             {this.sortBooks('read').map(book => {
                                 return (
                                     <li key={book.id}>
-                                        <Book book={book} shelf={'read'} />
+                                        <Book book={book} shelf={'read'} moveBook={this.props.moveBook} />
                                     </li>
                                 );
                             })}

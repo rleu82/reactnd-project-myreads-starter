@@ -18,7 +18,7 @@ class Book extends Component {
                             })`
                         }}
                     />
-                    <MoveBook shelf={this.props.shelf} book={this.props.book} />
+                    <MoveBook shelf={this.props.shelf} book={this.props.book} moveBook={this.props.moveBook} />
                 </div>
                 <div className="book-title">{this.props.book.title}</div>
                 <div className="book-authors">{this.props.book.authors}</div>

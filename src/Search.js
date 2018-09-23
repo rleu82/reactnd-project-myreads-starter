@@ -67,7 +67,7 @@ class BookSearch extends Component {
 
                             return (
                                 <li key={bookFound.id}>
-                                    <Book book={bookFound} shelf={currentShelf} />
+                                    <Book book={bookFound} shelf={currentShelf} moveBook={this.props.moveBook} />
                                 </li>
                             );
                         })}

@@ -24,6 +24,14 @@ class BooksApp extends React.Component {
         });
     }
 
+    // Update using update method and refresh this.state.books array
+    moveBook = (book, shelf) => {
+        BooksAPI.update(book, shelf);
+        BooksAPI.getAll().then(books => {
+            this.setState({ books });
+            console.log(this.state.books);
+        });
+    };
     // functions for child component to open close search page
     closeSearch = e => {
         e.preventDefault();
@@ -38,9 +46,9 @@ class BooksApp extends React.Component {
         return (
             <div className="app">
                 {this.state.showSearchPage ? (
-                    <BookSearch closesSearch={this.closeSearch} books={this.state.books} />
+                    <BookSearch closesSearch={this.closeSearch} books={this.state.books} moveBook={this.moveBook} />
                 ) : (
-                    <BookCase books={this.state.books} openSearch={this.openSearch} />
+                    <BookCase books={this.state.books} openSearch={this.openSearch} moveBook={this.moveBook} />
                 )}
             </div>
         );

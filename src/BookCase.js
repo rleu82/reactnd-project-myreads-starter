@@ -9,7 +9,7 @@ class BookCase extends Component {
                 <div className="list-books-title">
                     <h1>MyReads</h1>
                 </div>
-                <BookCaseShelves books={this.props.books} />
+                <BookCaseShelves books={this.props.books} moveBook={this.props.moveBook} />
                 <SearchButton openSearch={this.props.openSearch} />
             </div>
         );
