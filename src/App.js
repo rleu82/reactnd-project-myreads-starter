@@ -19,24 +19,28 @@ class BooksApp extends React.Component {
     // Get all books stored
     componentDidMount() {
         BooksAPI.getAll().then(books => {
-            this.setState({ books });
+            this.setState({ books: books });
+        });
+    }
+
+    updateBooks() {
+        BooksAPI.getAll().then(books => {
+            this.setState({ books: books });
             console.log(this.state.books);
         });
     }
 
     // Update using update method and refresh this.state.books array
     moveBook = (book, shelf) => {
-        BooksAPI.update(book, shelf);
-        BooksAPI.getAll().then(books => {
-            this.setState({ books });
-            console.log(this.state.books);
-        });
+        BooksAPI.update(book, shelf).then(() => this.updateBooks());
     };
+
     // functions for child component to open close search page
     closeSearch = e => {
         e.preventDefault();
         this.setState({ showSearchPage: false });
     };
+
     openSearch = e => {
         e.preventDefault();
         this.setState({ showSearchPage: true });
