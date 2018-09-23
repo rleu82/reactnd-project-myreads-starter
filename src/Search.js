@@ -142,6 +142,7 @@ class BookSearch extends Component {
                         />
                     </div>
                     {
+                        // Drop down list for search terms from SEARCH_TERMS.md
                         <div style={selectConStyle}>
                             <select
                                 style={selectStyle}
