@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import Book from './Book';
 
 class BookCaseShelves extends Component {
-    // Refernce: The shelf(key) that the book is placed in is listed under shelf. Use book.shelf to categorize book.
-    // Mozilla example: words.filter(word => word.length > 6).
-    // Filter the books and for each book check if their book.shelf === shelf (ie: currentlyReading, wantToRead, read)
-
     render() {
         const { moveBook, books } = this.props;
 
+        // Filter the books and for each book check if their book.shelf === shelf (ie: currentlyReading, wantToRead, read)
         let sortBooks = shelf => {
             return books.filter(book => book.shelf === shelf);
         };
