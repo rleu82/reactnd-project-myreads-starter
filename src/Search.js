@@ -19,13 +19,106 @@ class BookSearch extends Component {
             BooksAPI.search(query).then(booksFound => {
                 booksFound.error ? this.setState({ booksFound: [] }) : this.setState({ booksFound });
             });
-            console.log(this.state.booksFound);
         } else {
             this.setState({ booksFound: [] });
         }
     };
 
     render() {
+        const { moveBook } = this.props;
+        const { query, booksFound } = this.state;
+
+        let searchTerms = [
+            'Android',
+            'Art',
+            'Artificial Intelligence',
+            'Astronomy',
+            'Austen',
+            'Baseball',
+            'Basketball',
+            'Bhagat',
+            'Biography',
+            'Brief',
+            'Business',
+            'Camus',
+            'Cervantes',
+            'Christie',
+            'Classics',
+            'Comics',
+            'Cook',
+            'Cricket',
+            'Cycling',
+            'Desai',
+            'Design',
+            'Development',
+            'Digital Marketing',
+            'Drama',
+            'Drawing',
+            'Dumas',
+            'Education',
+            'Everything',
+            'Fantasy',
+            'Film',
+            'Finance',
+            'First',
+            'Fitness',
+            'Football',
+            'Future',
+            'Games',
+            'Gandhi',
+            'History',
+            'Homer',
+            'Horror',
+            'Hugo',
+            'Ibsen',
+            'Journey',
+            'Kafka',
+            'King',
+            'Lahiri',
+            'Larsson',
+            'Learn',
+            'Literary Fiction',
+            'Make',
+            'Manage',
+            'Marquez',
+            'Money',
+            'Mystery',
+            'Negotiate',
+            'Painting',
+            'Philosophy',
+            'Photography',
+            'Poetry',
+            'Production',
+            'Program Javascript',
+            'Programming',
+            'React',
+            'Redux',
+            'River',
+            'Robotics',
+            'Rowling',
+            'Satire',
+            'Science Fiction',
+            'Shakespeare',
+            'Singh',
+            'Swimming',
+            'Tale',
+            'Thrun',
+            'Time',
+            'Tolstoy',
+            'Travel',
+            'Ultimate',
+            'Virtual Reality',
+            'Web Development',
+            'iOS'
+        ];
+        const selectStyle = {
+            margin: '15px',
+            fontSize: '14px',
+            backgroundColor: 'white'
+        };
+        const selectConStyle = {
+            backgroundColor: 'white'
+        };
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -44,10 +137,24 @@ class BookSearch extends Component {
                         <input
                             type="text"
                             placeholder="Search by title or author"
-                            value={this.state.query}
+                            value={query}
                             onChange={event => this.updateQuery(event.target.value)}
                         />
                     </div>
+                    {
+                        <div style={selectConStyle}>
+                            <select
+                                style={selectStyle}
+                                id="suggestions"
+                                onChange={event => this.updateQuery(event.target.value)}
+                            >
+                                <option>Suggestions</option>
+                                {searchTerms.map(x => (
+                                    <option key={x}>{x}</option>
+                                ))}
+                            </select>
+                        </div>
+                    }
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
@@ -56,7 +163,7 @@ class BookSearch extends Component {
                             If true then set the shelf to the current shelf the book resides in. If not in
                             your library, set the shelf to none and list the query results
                         */}
-                        {this.state.booksFound.map(bookFound => {
+                        {booksFound.map(bookFound => {
                             let currentShelf = 'none';
                             this.props.books.map(
                                 currentBooks =>
@@ -64,7 +171,7 @@ class BookSearch extends Component {
                             );
                             return (
                                 <li key={bookFound.id}>
-                                    <Book book={bookFound} shelf={currentShelf} moveBook={this.props.moveBook} />
+                                    <Book book={bookFound} shelf={currentShelf} moveBook={moveBook} />
                                 </li>
                             );
                         })}

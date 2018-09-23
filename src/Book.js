@@ -3,6 +3,7 @@ import MoveBook from './MoveBook';
 
 class Book extends Component {
     render() {
+        const { moveBook, book, shelf } = this.props;
         return (
             <div className="book">
                 <div className="book-top">
@@ -13,15 +14,13 @@ class Book extends Component {
                             height: 193,
                             // ternary operator: (condition) ? expression on true : expression on false
                             // check for imageLinks key on object, if true grab thumbnail, if not true ':' display nothing
-                            backgroundImage: `url(${
-                                this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : ''
-                            })`
+                            backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : ''})`
                         }}
                     />
-                    <MoveBook shelf={this.props.shelf} book={this.props.book} moveBook={this.props.moveBook} />
+                    <MoveBook shelf={shelf} book={book} moveBook={moveBook} />
                 </div>
-                <div className="book-title">{this.props.book.title}</div>
-                <div className="book-authors">{this.props.book.authors}</div>
+                <div className="book-title">{book.title}</div>
+                <div className="book-authors">{book.authors}</div>
             </div>
         );
     }

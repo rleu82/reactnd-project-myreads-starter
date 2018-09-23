@@ -7,8 +7,10 @@ class BookCaseShelves extends Component {
     // Filter the books and for each book check if their book.shelf === shelf (ie: currentlyReading, wantToRead, read)
 
     render() {
+        const { moveBook, books } = this.props;
+
         let sortBooks = shelf => {
-            return this.props.books.filter(book => book.shelf === shelf);
+            return books.filter(book => book.shelf === shelf);
         };
 
         return (
@@ -21,7 +23,7 @@ class BookCaseShelves extends Component {
                             {sortBooks('currentlyReading').map(book => {
                                 return (
                                     <li key={book.id}>
-                                        <Book book={book} shelf={'currentlyReading'} moveBook={this.props.moveBook} />
+                                        <Book book={book} shelf={'currentlyReading'} moveBook={moveBook} />
                                     </li>
                                 );
                             })}
@@ -36,7 +38,7 @@ class BookCaseShelves extends Component {
                             {sortBooks('wantToRead').map(book => {
                                 return (
                                     <li key={book.id}>
-                                        <Book book={book} shelf={'wantToRead'} moveBook={this.props.moveBook} />
+                                        <Book book={book} shelf={'wantToRead'} moveBook={moveBook} />
                                     </li>
                                 );
                             })}
@@ -51,7 +53,7 @@ class BookCaseShelves extends Component {
                             {sortBooks('read').map(book => {
                                 return (
                                     <li key={book.id}>
-                                        <Book book={book} shelf={'read'} moveBook={this.props.moveBook} />
+                                        <Book book={book} shelf={'read'} moveBook={moveBook} />
                                     </li>
                                 );
                             })}
