@@ -3,6 +3,7 @@ import * as BooksAPI from './BooksAPI';
 import './App.css';
 import BookCase from './BookCase';
 import BookSearch from './Search';
+import { Route } from 'react-router-dom';
 
 class BooksApp extends React.Component {
     state = {
@@ -23,14 +24,14 @@ class BooksApp extends React.Component {
         });
     }
 
+    // Used to update books array
     updateBooks() {
         BooksAPI.getAll().then(books => {
             this.setState({ books: books });
-            console.log(this.state.books);
         });
     }
 
-    // Update using update method and refresh this.state.books array
+    // Update book location and update the books in the state
     moveBook = (book, shelf) => {
         BooksAPI.update(book, shelf).then(() => this.updateBooks());
     };
@@ -49,11 +50,20 @@ class BooksApp extends React.Component {
     render() {
         return (
             <div className="app">
-                {this.state.showSearchPage ? (
-                    <BookSearch closesSearch={this.closeSearch} books={this.state.books} moveBook={this.moveBook} />
-                ) : (
-                    <BookCase books={this.state.books} openSearch={this.openSearch} moveBook={this.moveBook} />
-                )}
+                <Route
+                    exact
+                    path="/"
+                    render={() => (
+                        <BookCase books={this.state.books} openSearch={this.openSearch} moveBook={this.moveBook} />
+                    )}
+                />
+                <Route
+                    exact
+                    path="/Search"
+                    render={() => (
+                        <BookSearch closesSearch={this.closeSearch} books={this.state.books} moveBook={this.moveBook} />
+                    )}
+                />
             </div>
         );
     }
